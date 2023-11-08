@@ -1,0 +1,36 @@
+def knapsack_branch_and_bound(weights, values, capacity):
+    items = sorted(zip(weights, values), key=lambda item: item[1] / item[0], reverse=True)
+
+    def bound(level, weight, value):
+        if weight > capacity:
+            return 0
+        bound_value = value
+        i = level
+        while i < len(items) and weight + items[i][0] <= capacity:
+            weight += items[i][0]
+            bound_value += items[i][1]
+            i += 1
+        if i < len(items):
+            bound_value += (capacity - weight) * (items[i][1] / items[i][0])
+        return bound_value
+
+    def branch_and_bound_recursive(level, weight, value):
+        nonlocal max_value
+        if weight <= capacity and value > max_value:
+            max_value = value
+        if level < len(items):
+            if weight + items[level][0] <= capacity:
+                branch_and_bound_recursive(level + 1, weight + items[level][0], value + items[level][1])
+            if bound(level, weight, value) > max_value:
+                branch_and_bound_recursive(level + 1, weight, value)
+
+    max_value = 0
+    branch_and_bound_recursive(0, 0, 0)
+    return max_value
+
+if __name__ == "__main__":
+    weights = [10, 20, 30]
+    values = [60, 100, 120]
+    capacity = 50
+    max_value = knapsack_branch_and_bound(weights, values, capacity)
+    print(f"Maximum value that can be obtained: {max_value}")

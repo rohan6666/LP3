@@ -1,0 +1,30 @@
+def MergeSort(arr):
+    if len(arr) <= 1:
+        return arr
+        
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
+
+    left = MergeSort(left)
+    right = MergeSort(right)
+
+    ans = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            ans.append(left[i])
+            i += 1
+        else:
+            ans.append(right[j])
+            j += 1
+    ans.extend(left[i:])
+    ans.extend(right[j:])
+    
+    return ans
+
+if __name__ == "__main__":
+    arr = [10,2,43,1,2312,1]
+    sortedArr = MergeSort(arr)
+    print(sortedArr)

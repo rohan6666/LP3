@@ -1,0 +1,33 @@
+def Kanpsack(wt, val, cap):
+    ans = 0
+    items = sorted(zip(wt, val), key = lambda item: item[1] / item[0], reverse = True)
+
+    for w, v in items:
+        if cap <= 0:
+            break
+
+        if cap >= w:
+            ans += v
+            cap -= w
+        else:
+            ans += int(cap * v / w)
+            break
+
+    return ans
+
+if __name__ == "__main__":
+    n = int(input("Enter number of items : "))
+    wt = []
+    val = []
+
+    print("\n")
+    for i in range(n):
+        w = int(input(f"Enter weight of item {i + 1} : ")) 
+        v = int(input(f"Enter value of item {i + 1} :  ")) 
+        wt.append(w)
+        val.append(v)
+
+    cap = int(input("\nEnter capacity of sack : "))
+
+    ans = Kanpsack(wt, val, cap)
+    print("\n\nMax Value", ans)

@@ -1,0 +1,24 @@
+sns.histplot(x = data['sepal_length'], kde=True)
+
+sns.boxplot(data['sepal_length'])
+
+sns.boxplot(x='sepal_length',y='species',data=data)
+sns.boxplot(x='petal_length',y='species',data=data)
+
+sns.countplot(data['Survived'])
+
+sns.catplot(x= 'Pclass', y = 'Age', data=data, kind = 'box')
+sns.catplot(x= 'Pclass', y = 'Fare', data=data, kind = 'strip')
+sns.catplot(x= 'Sex', y = 'Fare', data=data, kind = 'strip')
+sns.catplot(x= 'Sex', y = 'Age', data=data, kind = 'strip')
+
+sns.pairplot(data) #data -> df
+
+sns.scatterplot(x = 'Fare', y = 'Pclass', hue = 'Survived', data = data)
+sns.scatterplot(x = 'Survived', y = 'Fare', data = data)
+
+sns.distplot(data['Age'])
+
+sns.jointplot(x = "Survived", y = "Fare", kind = "scatter", data = data)
+
+sns.catplot(x='Pclass', y='Fare', data=data, kind='bar')

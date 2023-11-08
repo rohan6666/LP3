@@ -1,0 +1,58 @@
+set(df.dtypes)
+
+x = df.drop(["Email No.", "Prediction"], axis = 1)
+y = df["Prediction"]
+
+sns.countplot(x = y)
+
+y.value_counts()
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+xScaled = scaler.fit_transform(x)
+xScaled
+
+from sklearn.model_selection import train_test_split
+xTrain, xTest, yTrain, yTest = train_test_split(xScaled, y, random_state = 0, test_size = 0.25)
+
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(xTrain, yTrain)
+
+yPred = knn.predict(xTest)
+
+from sklearn.metrics import accuracy_score, ConfusionMatrixDisplay, classification_report
+ConfusionMatrixDisplay.from_predictions(yTest, yPred)
+yTest.value_counts()
+accuracy_score(yTest, yPred)
+
+print(classification_report(yTest, yPred))
+
+acc = []
+for k in range(1, 41):
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(xTrain, yTrain)
+    yPred = knn.predict(xTest)
+    acc.append(accuracy_score(yTest, yPred))
+acc
+
+knn = KNeighborsClassifier(n_neighbors=1)
+knn.fit(xTrain, yTrain)
+yPred = knn.predict(xTest)
+accuracy_score(yTest, yPred)
+
+from sklearn.svm import SVC
+svm = SVC(kernel="linear")
+svm.fit(xTrain, yTrain)
+yPred = svm.predict(xTest)
+accuracy_score(yTest, yPred)
+
+svm = SVC(kernel="poly")
+svm.fit(xTrain, yTrain)
+yPred = svm.predict(xTest)
+accuracy_score(yTest, yPred)
+
+svm = SVC(kernel="rbf")
+svm.fit(xTrain, yTrain)
+yPred = svm.predict(xTest)
+accuracy_score(yTest, yPred)

@@ -1,0 +1,69 @@
+import random
+import time
+
+# Deterministic Quick Sort
+def deterministic_quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[0]
+    left = []
+    right = []
+    equal = []
+    
+    for element in arr:
+        if element < pivot:
+            left.append(element)
+        elif element == pivot:
+            equal.append(element)
+        else:
+            right.append(element)
+    
+    return deterministic_quick_sort(left) + equal + deterministic_quick_sort(right)
+
+# Randomized Quick Sort
+def randomized_quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot_index = random.randint(0, len(arr) - 1)
+    pivot = arr[pivot_index]
+
+    left = []
+    right = []
+
+    for i, element in enumerate(arr):
+        if i == pivot_index:
+            continue
+        if element < pivot:
+            left.append(element)
+        else:
+            right.append(element)
+
+    return randomized_quick_sort(left) + [pivot] + randomized_quick_sort(right)
+
+# Function to measure the execution time of sorting
+def measure_sorting_time(sort_function, arr):
+    start_time = time.time()
+    sorted_arr = sort_function(arr)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    return sorted_arr, execution_time
+
+# Generate a random list of numbers
+arr = [random.randint(1, 1000) for _ in range(1000)]
+
+# Perform deterministic Quick Sort and measure execution time
+deterministic_sorted_arr, deterministic_execution_time = measure_sorting_time(deterministic_quick_sort, arr[:])
+
+# Perform randomized Quick Sort and measure execution time
+randomized_sorted_arr, randomized_execution_time = measure_sorting_time(randomized_quick_sort, arr[:])
+
+# Display the results
+print("Deterministic Quick Sort:")
+print("Execution Time:", deterministic_execution_time, "seconds")
+# print("Sorted Array:", deterministic_sorted_arr)
+
+print("\nRandomized Quick Sort:")
+print("Execution Time:", randomized_execution_time, "seconds")
+# print("Sorted Array:", randomized_sorted_arr)

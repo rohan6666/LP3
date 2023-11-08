@@ -1,0 +1,21 @@
+x = 2
+lr = 0.01
+precision = 0.000001
+stepSize = 1
+mxItr = 10000
+itr = 0
+gf = lambda x : (x + 3) ** 2
+
+import matplotlib.pyplot as plt
+gd = []
+
+while precision < stepSize and itr < mxItr:
+    pre = x
+    x = x - lr * gf(pre)
+    itr += 1
+    gd.append(x)
+    print("Iteration : ", itr, " Value : ", x)
+
+print("Local Minima : ", x)
+
+plt.plot
