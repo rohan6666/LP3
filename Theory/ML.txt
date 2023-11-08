@@ -1,0 +1,33 @@
+Linear Regression: Linear regression is used for predicting a continuous numerical value (like price, temperature, or weight) based on one or more input variables. It tries to establish a linear relationship between the input variables and the target variable.
+
+Random Forest: Random Forest is used for both regression (predicting numerical values) and classification (categorizing data into classes). It's often used when the relationship between input variables and the target variable is more complex and nonlinear.
+
+LR VS RF: Linear Regression is a simple and straightforward method for predicting numerical values with a linear relationship, while Random Forest is a more versatile and powerful method that can handle complex relationships and is used for both classification and regression tasks
+
+
+KNN: K-Nearest Neighbors is a machine learning algorithm used for both classification and regression tasks. The main idea behind KNN is that it makes predictions based on the similarity of data points.
+K stands for the number of nearest neighbors: In KNN, you need to choose a value for K, which represents the number of nearest data points you want to consider when making a prediction.
+K is a hyperparameter that you need to choose, and its value can impact the algorithm's performance.
+It's a lazy learning algorithm because it doesn't build an model during training; instead, it stores the entire training dataset and makes predictions at the time of testing.
+KNN can be computationally expensive with large datasets
+
+SVM: SVM stands for "Support Vector Machine," and it is a powerful machine learning algorithm used for both classification and regression tasks. SVM is particularly well-suited for tasks where you need to find a clear and optimized boundary between different classes or make predictions based on the relationships between data points.
+SVM is effective in cases where you have limited training data or a small dataset.
+It is a powerful algorithm for high-dimensional data, such as text and image classification.
+
+
+Hyperparameter: is a parameter that is set before the learning process begins and is not learned from the training data. These parameters control various aspects of the machine learning algorithm's behavior and performance. 
+
+
+Neural Network: The main purpose of a neural network is to try to find the relationship between features in a dataset, and it consists of a set of algorithms that mimic the work of the human brain. A “neuron” in a neural network is a mathematical function that collects and classifies information according to a specific architecture.
+
+Types of Classification:
+1. Suppose that you want to predict if a person has diabetes or not. İf you are facing this kind of situation, there are two possibilities, right? That is called Binary Classification.
+2. Suppose that you want to identify if a photo is of a toy, a person, or a cat, right? this is called Multi-class Classification because there are more than two options.
+3. Suppose you want to decide that which categories should be assigned to an article. If so, it is called Multi-label Classification, because one article could have more than one category assigned.
+
+
+Logistic Regression is a machine learning algorithm used for binary classification tasks, where the goal is to predict one of two possible outcomes (e.g., yes/no, spam/not spam, disease/no disease) based on input.
+It can be extended to handle multiclass classification by using techniques like one-vs-all or softmax regression.
+
+Gradient Descent is an optimization algorithm used in machine learning to find the minimum of a function. The basic idea behind Gradient Descent is to iteratively adjust the parameters of a model or the input values to minimize this function.

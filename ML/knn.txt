@@ -1,0 +1,46 @@
+x = df.drop("Outcome", axis = 1)
+y = df["Outcome"]
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+xScaled = scaler.fit_transform(x)
+
+from sklearn.model_selection import train_test_split
+xTrain, xTest, yTrain, yTest = train_test_split(xScaled, y, random_state=0, test_size= 0.25)
+
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(xTrain, yTrain)
+
+yPred = knn.predict(xTest)
+
+from sklearn.metrics import ConfusionMatrixDisplay, classification_report, accuracy_score
+ConfusionMatrixDisplay.from_predictions(yTest, yPred)
+accuracy_score(yTest, yPred)
+print(classification_report(yTest, yPred))
+
+from sklearn.metrics import confusion_matrix, precision_score, recall_score
+cm = confusion_matrix(yTest, yPred)
+precision_score(yTest, yPred)
+recall_score(yTest, yPred)
+print("Error Rate", 1 - accuracy_score(yTest, yPred))
+
+import numpy as np
+
+err = []
+for k in range(1, 41):
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(xTrain, yTrain)
+    yPred = knn.predict(xTest)
+    err.append(np.mean(yPred != yTest))
+
+err
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(16,9))
+plt.xlabel("K")
+plt.ylabel("Error")
+plt.grid()
+plt.xticks(range(1, 41))
+plt.plot(range(1, 41), err)

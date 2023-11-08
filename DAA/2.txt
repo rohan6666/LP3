@@ -1,0 +1,72 @@
+import heapq
+
+class Node:
+    def __init__(self, ferq, symbol, left = None, right = None):
+        self.ferq = ferq
+        self.symbol = symbol
+        self.left = left
+        self.right = right
+        self.huff = ''
+
+    def __lt__(self, next):
+        return self.ferq < next.ferq
+
+def Word(word):
+    ferq = []
+    chars = []
+
+    for c in word:
+        if c in chars:
+            idx = chars.index(c)
+            ferq[idx] += 1
+        else:
+            chars.append(c)
+            ferq.append(1)
+    
+    return ferq, chars
+
+def HuffmanTree(ferq, chars):
+    nodes = []
+
+    for i in range(len(chars)):
+        heapq.heappush(nodes, Node(ferq[i], chars[i]))
+
+    while len(nodes) > 1:
+        left = heapq.heappop(nodes)
+        right = heapq.heappop(nodes)
+
+        left.huff = '0'
+        right.huff = '1'
+
+        newNode = Node(left.ferq + right.ferq, left.symbol + right.symbol, left, right)
+        heapq.heappush(nodes, newNode)
+
+    return nodes
+
+def HuffmanMap(node, val = ' ', map = {}):
+    newVal = val + str(node.huff)
+
+    if node.left:
+        map = HuffmanMap(node.left, newVal, map)
+    if node.right:
+        map = HuffmanMap(node.right, newVal, map)
+
+    if not node.left and not node.right:
+        map[node.symbol] = newVal
+
+    return map
+
+if __name__ == "__main__":
+    
+    word = "machinelearning"
+    ferq, chars = Word(word)
+    tree = HuffmanTree(ferq, chars)
+    map = HuffmanMap(tree[0])
+
+    print("Word : ", end = "")
+    for c in word:
+        print(map[c], end = " ")
+
+    print("\n\nCodes :")
+    for c, code in map.items():
+        print(c, "->", code)

@@ -1,0 +1,48 @@
+Email Investigation:It refers to the process of examining and analyzing email messages, email accounts, or email-related activities for various purposes.
+
+Email Tracking:It is a practice commonly used in marketing and sales to monitor the behavior of email recipients after they receive and open an email. It involves embedding small pieces of code or invisible images within the email. When a recipient opens the email, these tracking elements send signals back to the sender, providing information about the recipient's actions.
+
+Metadata: defined as the data providing information about one or more aspects of the data.
+
+Email headers contain metadata about the email, its path of transmission, and its source, which can be crucial for identifying the sender, tracking the email's journey, and verifying its authenticity. 
+
+Email architecture, is the structure and design of the systems and components that enable the sending, receiving, and management of email messages. A typical email system consists of several key components that work together to facilitate the exchange of electronic messages.
+ex User Agents, Mail Transfer Agent, Mail Delivery Agent
+
+POP3 is a protocol used to retrieve email messages from a mail server to a user's email client. It allows users to download email from the server to their local device for offline access.
+
+IMAP is another protocol for retrieving email from a mail server to an email client. It allows users to manage their email on the server while accessing them from multiple devices.
+
+SMTP is a protocol for sending email messages. It is used to transmit outgoing email from a sender's email client or server to the recipient's email server.
+
+Email Header Analysis Tools: MXToolbox Email Header Analyzer, Email Header Analyzer by Postmark, Talos Intelligence Email Header Analyzer
+
+
+
+CAPTCHA stands for "Completely Automated Public Turing test to tell Computers and Humans Apart." It is a security mechanism designed to distinguish between human users and automated computer programs or bots. CAPTCHAs typically present challenges that are easy for humans to solve but difficult for automated scripts.
+
+Different form of CAPTCHA: Text-Based CAPTCHA, Image Recognition CAPTCHA, Math CAPTCHA, Audio CAPTCHA, Checkbox CAPTCHA.
+
+Algorithm:
+1. Start
+2. Import image.captcha from ImageCaptcha
+3. Generate captcha by generate(captcha_text)
+4. For randomly captcha generation use function random.randint()
+5. Create an image to write a captcha text
+6. End
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Wireshark is a widely used open-source network protocol analyzer and packet capture tool. It allows users to capture and examine the data traveling back and forth on a computer network.
+
+A proxy server is a component in cybersecurity that acts as an intermediary between a client device (such as a computer or smartphone) and a destination server or the internet.
+
+A honeypot is a trap designed to attract and monitor malicious actors, such as hackers, malware, and cybercriminals, in order to gather information about their tactics, techniques, and intent.
+
+SNORT is a powerful open-source intrusion detection system and intrusion prevention system that provides real-time network traffic analysis and data packet logging
+
+SNORT vs Wireshark: 
+Snort is primarily an intrusion detection and prevention system (IDS/IPS). Its main purpose is to monitor network traffic in real-time, and take action to prevent or mitigate these attacks.Snort is focused on security and actively responds to threats.
+Wireshark, on the other hand, is a network protocol analyzer or packet capture tool. Its primary purpose is to capture, analyze, and inspect network traffic to troubleshoot network issues.
+
+Types of Honey Pot: Low-Interaction Honeypots, Medium-Interaction Honeypots, High-Interaction Honeypots, Research Honeypots, Production Honeypots

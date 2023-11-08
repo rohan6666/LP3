@@ -1,0 +1,62 @@
+import random
+import time
+
+def Deterministic(arr):
+    n = len(arr)
+    if n <= 1:
+        return arr
+        
+    piviot = arr[0]
+    left = []
+    equal = []
+    right = []
+
+    for i in range(n):
+        if arr[i] == piviot:
+            equal.append(arr[i])
+        elif arr[i] < piviot:
+            left.append(arr[i])
+        else:
+            right.append(arr[i])
+
+    return Deterministic(left) + equal + Deterministic(right)
+
+def Randomized(arr):
+    n = len(arr)
+    if n <= 1:
+        return arr
+    
+    piviot = arr[random.randint(0, n - 1)]
+    left = []
+    equal = []
+    right = []
+
+    for i in range(n):
+        if arr[i] == piviot:
+            equal.append(arr[i])
+        elif arr[i] < piviot:
+            left.append(arr[i])
+        else:
+            right.append(arr[i])
+
+    return Randomized(left) + equal + Randomized(right)
+
+def Timer(func, arr):
+    stTime = time.time()
+    sortedArr = func(arr)
+    enTime = time.time()
+    executionTime = enTime - stTime
+    return sortedArr, executionTime
+
+if __name__ == "__main__":
+    arr = [random.randint(1, 1000) for i in range(1000)]
+    dArr, dTime = Timer(Deterministic, arr)
+    rArr, rTime = Timer(Randomized, arr)
+
+    print("Deterministic")
+    # print("Array : ", dArr)
+    print("Time : ", dTime)
+
+    print("\nRandomized")
+    # print("Array : ", rArr)
+    print("Time : ", rTime)
